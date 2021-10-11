@@ -79,6 +79,8 @@ async def unload(ctx, extension):
 for filename in os.listdir('cogs'):
     if filename.endswith('.py'):
         bot.load_extension(f'cogs.{filename[:-3]}')
+    else:
+      print(f'Unable to load {filename[:-3]}')
         
 async def del_msg(msg):
     await msg.message.delete()
