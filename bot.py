@@ -7,8 +7,6 @@ from discord.ext.commands import bot, Bot
 import random
 from discord.flags import Intents
 
-TOKEN = 'ODk0ODc4MDE0NjMzMDQxOTYx.YVwaGA.zdrCF-fBLvY8ap1Nzw2IEAapegY'
-
 client = discord.Client(activity=discord.Game(name='al;help'))
 
 intents = discord.Intents.default()
@@ -115,4 +113,4 @@ async def tell(ctx, *, arg):
     await ctx.send(embed=embed)
     await del_msg(ctx)
 
-bot.run(TOKEN)
+bot.run(DISCORD_TOKEN)
