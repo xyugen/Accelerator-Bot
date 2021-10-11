@@ -18,13 +18,9 @@ bot = commands.Bot(description="Yugen's creation. Current version: 1.0.", comman
 
 @bot.event
 async def on_ready():
-    print('Logged in as')
-    print(bot.user.name)
-    print(bot.user.id)
-    print('------')
-
-@bot.event
-async def on_ready(msg):
+    print(f'Logged in as {bot.user.name}')
+    print(f'ID: {bot.user.id}')
+    print('-----------')
     channel = bot.get_channel(893003734924271616)
     embed = discord.Embed(title=f"Accel is Online!", description='Type "al;help to see more of my commands."', color=0xFF5733)
     await channel.send(embed=embed)
