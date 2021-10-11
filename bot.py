@@ -58,37 +58,37 @@ async def on_member_remove(member):
 async def del_msg(msg):
     await msg.message.delete()
 
-@bot.command(pass_context=True, name='Add', help="Adds two numbers")
+@bot.command(pass_context=True, name='add', help="Adds two numbers")
 async def add(ctx, left: int, right: int):
     await ctx.send(left + right)
 
 
-@bot.command(pass_context=True, name='Subtract', help="Substracts two numbers")
+@bot.command(pass_context=True, name='subt', help="Substracts two numbers")
 async def subt(ctx, left: int, right: int):
     await ctx.send(left - right)
 
 
-@bot.command(pass_context=True, name='Multiply', help="Multiplies two numbers")
+@bot.command(pass_context=True, name='mult', help="Multiplies two numbers")
 async def mult(ctx, left: int, right: int):
     await ctx.send(left * right)
 
 
-@bot.command(pass_context=True, name='Divide', help="Divides two numbers")
+@bot.command(pass_context=True, name='div', help="Divides two numbers")
 async def div(ctx, left: int, right: int):
     await ctx.send(left / right)
 
 
-@bot.command(pass_context=True, name='Choices', help="Choose between given choices.")
+@bot.command(pass_context=True, name='choose', help="Choose between given choices.")
 async def choose(ctx, *choices: str):
     await ctx.send(random.choice(choices))
 
 
-@bot.command(pass_context=True, name='Member joined info', help="Checks the members date and time of joining the server.")
+@bot.command(pass_context=True, name='joined', help="Checks the members date and time of joining the server.")
 async def joined(ctx, member: discord.Member):
     await ctx.send('{0.name} joined in {0.joined_at}'.format(member))
 
 
-@bot.command(pass_context=True, name='Repeat', help="Repeats and deletes your message.")
+@bot.command(pass_context=True, name='repeat', help="Repeats and deletes your message.")
 async def repeat(ctx, *, arg):
     user_id = ctx.author.id
     channel = bot.get_channel(ctx.channel.id)
@@ -96,7 +96,7 @@ async def repeat(ctx, *, arg):
     await del_msg(ctx)
 
 
-@bot.command(pass_context=True, name='Announce', help="Send your message to announcement channel.")
+@bot.command(pass_context=True, name='announce', help="Send your message to announcement channel.")
 async def announce(ctx, title, *, arg):
     username = ctx.author.name.split('#')[0]
     user_id = ctx.author.id
@@ -108,7 +108,7 @@ async def announce(ctx, title, *, arg):
     await channel.send(embed=embed)
 
 
-@bot.command(pass_context=True, name='Tell', help='I will retell what you told me.')
+@bot.command(pass_context=True, name='tell', help='I will retell what you told me.')
 async def tell(ctx, *, arg):
     user_id = ctx.author.id
     embed=discord.Embed(title=f"{arg}", color=0xFF5733)
