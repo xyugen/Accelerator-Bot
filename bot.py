@@ -113,4 +113,4 @@ async def tell(ctx, *, arg):
     await ctx.send(embed=embed)
     await del_msg(ctx)
 
-bot.run(DISCORD_TOKEN)
+bot.run(os.getenv('DISCORD_TOKEN'))
