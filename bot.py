@@ -8,8 +8,6 @@ from discord.ext.commands import bot, Bot
 import random
 from discord.flags import Intents
 
-client = discord.Client(activity=discord.Game(name='al;help'))
-
 intents = discord.Intents.default()
 intents.members = True
 
@@ -38,6 +36,7 @@ async def on_member_join(member):
     embed = discord.Embed(
         title="Welcome!", description=f"{member.mention} just joined the server. Let us welcome them, @everyone!")
     embed.set_author(name=f'{username} had joined!', icon_url=userAvatar)
+    await bot.change_presence(activity=discord.Game(name="with your feelings."))
     await channel.send(embed=embed)
 
 @bot.event
