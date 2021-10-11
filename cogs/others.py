@@ -8,13 +8,13 @@ class Other(commands.Cog):
         self.bot = bot
 
     # Commands
-    @commands.command()
+    @commands.command(pass_context=True, help='Shows my ping.')
     async def ping(self, ctx):
         embed = discord.Embed(
             title='Pong!', description=f'My ping is {round(self.bot.latency * 1000)}ms.', color=0x0363ff)
         await ctx.send(embed=embed)
         
-    @commands.command()
+    @commands.command(pass_context=True, help='Shows relevant informations about the user.')
     async def userinfo(self, ctx, *, user: discord.Member = None): # b'\xfc'
         if user is None:
             user = ctx.author      
