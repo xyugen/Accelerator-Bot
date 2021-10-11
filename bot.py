@@ -21,7 +21,7 @@ async def on_ready():
     print('-----------')
     channel = bot.get_channel(893003734924271616)
     embed = discord.Embed(title=f"Accel is Online!", description='Type "al;help" to see more of my commands.', color=0xFF5733)
-    await bot.change_presence(activity=discord.Game(name="with your feelings."))
+    await bot.change_presence(activity=discord.Game('with your feelings.'))
     await channel.send(embed=embed)
 
 global username
