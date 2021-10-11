@@ -48,6 +48,18 @@ async def on_member_remove(member):
         title="Goodbye!", description=f"{member.mention} just left the server. Let us say our goodbyes, @everyone.")
     embed.set_author(name=f'{username} had left!', icon_url=userAvatar)
     await channel.send(embed=embed)
+    
+badwords = ['fuck', 'shit', 'bitch', 'puta', 'gago', 'deputa', 'tangina', 'ulol', 'ulul', 'tanga', 'inutil', 'gunggong', 'gunggung', 'hunghang']
+
+@bot.event
+async def on_message(message):
+   for i in badwords: # Go through the list of bad words;
+      if i in (message.content.lower()):
+         await message.delete()
+         await message.channel.send(f"{message.author.mention}, please do not use profanity.")
+         bot.dispatch('profanity', message, i)
+         return # So that it doesn't try to delete the message again, which will cause an error.
+   await bot.process_commands(message)
 
 async def del_msg(msg):
     await msg.message.delete()
