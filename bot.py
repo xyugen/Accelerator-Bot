@@ -24,6 +24,12 @@ async def on_ready():
     print(bot.user.id)
     print('------')
 
+@bot.event
+async def on_ready(msg):
+    channel = bot.get_channel(893003734924271616)
+    embed = discord.Embed(title=f"Accel is Online!", description='Type "al;help to see more of my commands."', color=0xFF5733)
+    await channel.send(embed=embed)
+
 global username
 global user_id
 global member
