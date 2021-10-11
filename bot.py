@@ -61,6 +61,13 @@ async def on_message(message):
          return # So that it doesn't try to delete the message again, which will cause an error.
    await bot.process_commands(message)
 
+@bot.event
+async def on_command_error(error, ctx):
+    if isinstance(error, commands.CommandNotFound):
+        await bot.send_message(ctx.message.channel, "**ERROR:** Sorry {ctx.author.mention}, but this command either doesn't exist or it's disabled. Contact <@560612243012845578> for more info.")
+    else:
+        raise error
+
 async def del_msg(msg):
     await msg.message.delete()
 
