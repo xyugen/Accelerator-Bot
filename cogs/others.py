@@ -36,5 +36,19 @@ class Other(commands.Cog):
         embed.set_footer(text='ID: ' + str(user.id))
         return await ctx.send(embed=embed)
 
+    @commands.command(pass_context=True, help='Number guessing game. From 1 to 100.')
+    async def game(self, ctx):
+        number = random.randint(0, 100)
+        for i in range(0, 5):
+            await ctx.send('Guess')
+            response = await self.bot.wait_for('message', check=lambda message: message.author == ctx.author)
+            guess = int(response.content)
+            if guess > number:
+                await ctx.send('Smaller')
+            elif guess < number:
+                await ctx.send('Bigger')
+            else:
+                await ctx.send(f'You guessed it! The answer is {number}.')
+                
 def setup(bot):
     bot.add_cog(Other(bot))
