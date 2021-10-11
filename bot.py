@@ -64,7 +64,7 @@ async def on_message(message):
 @bot.event
 async def on_command_error(ctx, error): #sends an error message when the entered command is not found
     if isinstance(error, commands.CommandNotFound):
-        await bot.send_message(ctx.message.channel, f"**ERROR:** Sorry {ctx.author.mention}, but this command either doesn't exist or it's disabled. Contact <@560612243012845578> for more info.")
+        await ctx.channel.send(f"**ERROR:** Sorry {ctx.author.mention}, but this command either doesn't exist or it's disabled. Contact <@560612243012845578> for more info.")
     else:
         raise error
 
