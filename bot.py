@@ -21,6 +21,7 @@ async def on_ready():
     print('-----------')
     channel = bot.get_channel(893003734924271616)
     embed = discord.Embed(title=f"Accel is Online!", description='Type "al;help" to see more of my commands.', color=0xFF5733)
+    await bot.change_presence(activity=discord.Game(name="with your feelings."))
     await channel.send(embed=embed)
 
 global username
@@ -36,7 +37,6 @@ async def on_member_join(member):
     embed = discord.Embed(
         title="Welcome!", description=f"{member.mention} just joined the server. Let us welcome them, @everyone!")
     embed.set_author(name=f'{username} had joined!', icon_url=userAvatar)
-    await bot.change_presence(activity=discord.Game(name="with your feelings."))
     await channel.send(embed=embed)
 
 @bot.event
