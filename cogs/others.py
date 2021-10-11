@@ -48,7 +48,7 @@ class Other(commands.Cog):
                 await ctx.send('Smaller')
             elif guess < number:
                 await ctx.send('Bigger')
-            else:
+            elif guess == number:
                 await ctx.send(f'You guessed it! The answer is {number}.')
                 
 def setup(bot):
