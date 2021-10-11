@@ -49,7 +49,7 @@ async def on_member_remove(member):
     embed.set_author(name=f'{username} had left!', icon_url=userAvatar)
     await channel.send(embed=embed)
     
-badwords = ['fuck', 'shit', 'bitch', 'puta', 'gago', 'deputa', 'tangina', 'ulol', 'ulul', 'tanga', 'inutil', 'gunggong', 'gunggung', 'hunghang']
+badwords = ['fuck', 'shit', 'bitch', 'puta', 'gago', 'deputa', 'tangina', 'ulol', 'ulul', 'tanga', 'inutil', 'gunggong', 'gunggung', 'hunghang', 'tang ina', 'putangina', 'pota', 'potangina', 'fuck you', 'putang ina']
 
 @bot.event
 async def on_message(message):
