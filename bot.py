@@ -67,7 +67,19 @@ async def on_command_error(ctx, error): #sends an error message when the entered
         await ctx.channel.send(f"**ERROR:** Sorry {ctx.author.mention}, but this command either doesn't exist or it's disabled. Contact <@560612243012845578> for more info.")
     else:
         raise error
+        
+@bot.command(pass_context=True)
+async def load(ctx, extension):
+    bot.load_extension(f'cogs.{extension}')
 
+@bot.command(pass_context=True)
+async def unload(ctx, extension):
+    bot.unload_extension(f'cogs.{extension}')
+
+for filename in os.listdir('cogs'):
+    if filename.endswith('.py'):
+        bot.load_extension(f'cogs.{filename[:-3]}')
+        
 async def del_msg(msg):
     await msg.message.delete()
 
