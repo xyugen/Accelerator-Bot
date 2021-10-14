@@ -127,6 +127,7 @@ async def repeat(ctx, *, arg):
 
 
 @bot.command(pass_context=True, name='announce', help="Send your message to announcement channel.")
+@commands.has_any_role('Burnik', 893275489832140830)
 async def announce(ctx, title, *, arg):
     username = ctx.author.name.split('#')[0]
     user_id = ctx.author.id
