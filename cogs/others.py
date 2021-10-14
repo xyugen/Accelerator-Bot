@@ -16,6 +16,7 @@ class Other(commands.Cog):
         await ctx.send(embed=embed)
         
     @commands.command(pass_context=True, help='Shows relevant informations about the user.')
+    @commands.has_any_role('Burnik', 893275489832140830)
     async def userinfo(self, ctx, *, user: discord.Member = None): # b'\xfc'
         if user is None:
             user = ctx.author      
@@ -51,9 +52,9 @@ class Other(commands.Cog):
             elif guess == number:
                 await ctx.send(f'You guessed it! The answer is {number}.')
                 
-    @commands.command(pass_context=True, help='Verifies a member')
+    @commands.command(pass_context=True, help='Verifies a member.')
     @commands.has_any_role('Burnik', int(893275489832140830))
-    async def verify(ctx, user: discord.Member):
+    async def verify(self, ctx, user: discord.Member):
         roles = discord.utils.find(
             lambda r: r.name == 'Verified', ctx.message.guild.roles)
         role = discord.utils.get(ctx.message.guild.roles, name="Verified")
