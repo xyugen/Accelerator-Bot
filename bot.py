@@ -53,6 +53,9 @@ badwords = ['fuck', 'shit', 'bitch', 'puta', 'gago', 'deputa', 'tangina', 'ulol'
 
 @bot.event
 async def on_message(message):
+  if message.author.bot:
+        return
+  else:
    for i in badwords: # Go through the list of bad words;
       if i in (message.content.lower()):
          await message.delete()
