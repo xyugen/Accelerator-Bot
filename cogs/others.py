@@ -51,5 +51,27 @@ class Other(commands.Cog):
             elif guess == number:
                 await ctx.send(f'You guessed it! The answer is {number}.')
                 
+    @commands.command(pass_context=True, help='Verifies a member')
+    @commands.has_any_role('Burnik', int(893275489832140830))
+    async def verify(ctx, user: discord.Member):
+        roles = discord.utils.find(
+            lambda r: r.name == 'Verified', ctx.message.guild.roles)
+        role = discord.utils.get(ctx.message.guild.roles, name="Verified")
+        if ctx.author == user:
+            await ctx.send("You can't verify yourself.")
+            await ctx.message.delete()
+            return
+        elif ctx.channel.id != 898078983038599218:
+            await ctx.send('You can only verify in <#898078983038599218> channel.')
+            await ctx.message.delete()
+            return
+        elif roles in user.roles:
+            await ctx.send(f'{ctx.author.mention}, {user.mention} is already verified.')
+            await ctx.message.delete()
+        else:
+            await discord.Member.add_roles(user, role)
+            await ctx.send(f'{user.mention} has been verified by {ctx.author.mention}.')
+            await ctx.message.delete()
+                
 def setup(bot):
     bot.add_cog(Other(bot))
