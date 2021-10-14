@@ -56,7 +56,7 @@ async def on_message(message):
    for i in badwords: # Go through the list of bad words;
       if i in (message.content.lower()):
          await message.delete()
-         await message.channel.send(f"{message.author.mention}, please do not use profanity.")
+         await message.channel.send(f"{message.author.mention}, please do not use profanity.\n**Message deleted:** ||{message.content}||")
          bot.dispatch('profanity', message, i)
          return # So that it doesn't try to delete the message again, which will cause an error.
    await bot.process_commands(message)
