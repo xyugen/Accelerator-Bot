@@ -19,10 +19,7 @@ async def on_ready():
     print(f'Logged in as {bot.user.name}')
     print(f'ID: {bot.user.id}')
     print('-----------')
-    channel = bot.get_channel(893003734924271616)
-    embed = discord.Embed(title=f"Accel is Online!", description='Type "al;help" to see more of my commands.', color=0xFF5733)
     await bot.change_presence(activity=discord.Game('with your feelings.'))
-    await channel.send(embed=embed)
 
 global username
 global user_id
@@ -59,7 +56,7 @@ async def on_message(message):
    for i in badwords: # Go through the list of bad words;
       if i in (message.content.lower()):
          await message.delete()
-         await message.channel.send(f"{message.author.mention}, please do not use profanity.\n**Message deleted:** ||{message.content}||")
+         await message.channel.send(f"{message.author.mention}, please avoid using profanity.\n**Message deleted:** ||{message.content}||")
          bot.dispatch('profanity', message, i)
          return # So that it doesn't try to delete the message again, which will cause an error.
    await bot.process_commands(message)
