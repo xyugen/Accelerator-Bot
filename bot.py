@@ -111,7 +111,9 @@ async def choose(ctx, *choices: str):
 
 
 @bot.command(pass_context=True, name='joined', help="Checks the members date and time of joining the server.")
-async def joined(ctx, member: discord.Member):
+async def joined(ctx, member: discord.Member = None):
+    if member == None:
+      member = ctx.message.author
     await ctx.send('{0.name} joined in {0.joined_at}'.format(member))
 
 
