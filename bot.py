@@ -63,8 +63,8 @@ async def on_message(message):
                     bot.dispatch('profanity', message, i)
                     # So that it doesn't try to delete the message again, which will cause an error.
                     return
-    else:
-     await bot.process_commands(message)
+        else:
+         await bot.process_commands(message)
 
 @bot.event
 async def on_command_error(ctx, error): #sends an error message when the entered command is not found
