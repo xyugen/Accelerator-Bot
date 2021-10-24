@@ -55,7 +55,7 @@ async def on_message(message):
         return
   else:
     for l in link:
-        if l not in (message.lower()):
+        if l not in (message.content.lower()):
             for i in badwords:  # Go through the list of bad words;
                 if i in (message.content.lower()):
                     await message.delete()
