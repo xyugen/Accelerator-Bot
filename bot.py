@@ -47,24 +47,24 @@ async def on_member_remove(member):
     await channel.send(embed=embed)
     
 badwords = ['fuck', 'shit', 'bitch', 'puta', 'gago', 'deputa', 'tangina', 'ulol', 'ulul', 'tanga', 'inutil', 'gunggong', 'gunggung', 'hunghang', 'tang ina', 'putangina', 'pota', 'potangina', 'putang ina', 'kingina', 'king ina']
-link = ['https:', 'http:']
+link = ['https://', 'http://']
 
 @bot.event
 async def on_message(message):
-  if message.author.bot:
+    if message.author.bot:
         return
-  else:
-    for l in link:
-        if l not in (message.content.lower()):
-            for i in badwords:  # Go through the list of bad words;
-                if i in (message.content.lower()):
-                    await message.delete()
-                    await message.channel.send(f"{message.author.mention}, please avoid using profanity.\n**Message deleted:** ||{message.content}||")
-                    bot.dispatch('profanity', message, i)
-                    # So that it doesn't try to delete the message again, which will cause an error.
-                    return
-        else:
-         return
+    else:
+        for l in link:
+            if l in (message.content.lower()):
+                return
+            else:
+                for i in badwords:  # Go through the list of bad words;
+                    if i in (message.content.lower()):
+                        await message.delete()
+                        await message.channel.send(f"{message.author.mention}, please avoid using profanity.\n**Message deleted:** ||{message.content}||")
+                        bot.dispatch('profanity', message, i)
+                        # So that it doesn't try to delete the message again, which will cause an error.
+                        return
 
 @bot.event
 async def on_command_error(ctx, error): #sends an error message when the entered command is not found
