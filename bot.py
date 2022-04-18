@@ -47,7 +47,7 @@ async def on_member_remove(member):
     await channel.send(embed=embed)
     
 badwords = ['fuck', 'shit', 'bitch', 'puta', 'gago', 'deputa', 'tangina', 'ulol', 'ulul', 'tanga', 'inutil', 'gunggong', 'gunggung', 'hunghang', 'tang ina', 'putangina', 'pota', 'potangina', 'putang ina', 'kingina', 'king ina']
-links = ['https://', 'http://']
+link = ['https://', 'http://']
 
 @bot.event
 async def on_message(message):
