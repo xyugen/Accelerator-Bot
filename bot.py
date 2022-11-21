@@ -7,6 +7,7 @@ from discord.ext import commands
 from discord.ext.commands import bot, Bot
 import random
 from discord.flags import Intents
+from datetime import datetime
 
 intents = discord.Intents.default()
 intents.members = True
@@ -18,6 +19,7 @@ bot = commands.Bot(description="Yugen's creation. Current version: 1.0.", comman
 async def on_ready():
     print(f'Logged in as {bot.user.name}')
     print(f'ID: {bot.user.id}')
+    print(datetime.now().strftime('%d:%m:%Y'))
     print('-----------')
     await bot.change_presence(activity=discord.Game('with your feelings.'))
 
