@@ -30,7 +30,15 @@ global userAvatar
 async def on_member_join(member):
     username = member.name.split('#')[0]
     userAvatar = member.avatar_url
-    channel = bot.get_channel(893315195831713803)
+    
+    serBur = bot.get_guild(892995233564987432)
+    serEwa = bot.get_guild(1014765917038714901)
+
+    if member.guild.id == serBur:
+        channel = bot.get_channel(893315195831713803)
+    elif member.guild.id == serEwa:
+        channel = bot.get_channel(1014766900154224751)
+
     embed = discord.Embed(
         title="Welcome!", description=f"{member.mention} just joined the server. Let us welcome them, @everyone!")
     embed.set_author(name=f'{username} had joined!', icon_url=userAvatar)
@@ -40,7 +48,15 @@ async def on_member_join(member):
 async def on_member_remove(member):
     username = member.name.split('#')[0]
     userAvatar = member.avatar_url
-    channel = bot.get_channel(893315195831713803)
+
+    serBur = bot.get_guild(892995233564987432)
+    serEwa = bot.get_guild(1014765917038714901)
+
+    if member.guild.id == serBur:
+        channel = bot.get_channel(893315195831713803)
+    elif member.guild.id == serEwa:
+        channel = bot.get_channel(1014766900154224751)
+
     embed = discord.Embed(
         title="Goodbye!", description=f"{member.mention} just left the server. Let us say our goodbyes, @everyone.")
     embed.set_author(name=f'{username} had left!', icon_url=userAvatar)
