@@ -1,4 +1,7 @@
 import os
+from dotenv import load_dotenv
+load_dotenv()
+
 import discord
 from discord import user
 from discord import message
@@ -19,7 +22,7 @@ bot = commands.Bot(description="Yugen's creation. Current version: 1.0.", comman
 async def on_ready():
     print(f'Logged in as {bot.user.name}')
     print(f'ID: {bot.user.id}')
-    print(datetime.now().strftime('%d:%m:%Y'))
+    print(datetime.now().strftime('%m/%d/%Y'))
     print('-----------')
     await bot.change_presence(activity=discord.Game('with your feelings.'))
 
@@ -107,7 +110,7 @@ for filename in os.listdir('cogs'):
     if filename.endswith('.py'):
         bot.load_extension(f'cogs.{filename[:-3]}')
     else:
-      print(f'Unable to load {filename[:-3]}')
+        print(f'Unable to load {filename[:-3]}')
         
 async def del_msg(msg):
     await msg.message.delete()

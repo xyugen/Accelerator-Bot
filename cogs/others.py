@@ -16,7 +16,7 @@ class Other(commands.Cog):
         await ctx.send(embed=embed)
         
     @commands.command(pass_context=True, help='Shows relevant informations about the user.')
-    @commands.has_any_role('Burnik', 893275489832140830)
+    # @commands.has_any_role('Burnik', 893275489832140830)
     async def userinfo(self, ctx, *, user: discord.Member = None): # b'\xfc'
         if user is None:
             user = ctx.author      
