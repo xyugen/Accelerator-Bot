@@ -32,9 +32,11 @@ global userAvatar
 async def on_member_join(member):
     username = member.name.split('#')[0]
     userAvatar = member.avatar_url
-    
-    serBur = bot.get_guild(892995233564987432)
-    serEwa = bot.get_guild(1014765917038714901)
+
+    serBur = 892995233564987432
+    serEwa = 1014765917038714901
+
+    channel = bot.get_channel(1014766900154224751)
 
     if member.guild.id == serBur:
         channel = bot.get_channel(893315195831713803)
