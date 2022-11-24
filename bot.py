@@ -71,12 +71,40 @@ async def on_member_remove(member):
     
 badwords = ['fuck', 'shit', 'bitch', 'puta', 'gago', 'deputa', 'tangina', 'ulol', 'ulul', 'tanga', 'inutil', 'gunggong', 'gunggung', 'hunghang', 'tang ina', 'putangina', 'pota', 'potangina', 'putang ina', 'kingina', 'king ina']
 link = ['https://', 'http://']
+curses = True
+
+@bot.command(pass_context=True)
+@commands.has_permissions(administrator=True)
+async def curses(ctx, allow=None):
+    global curses
+    if (allow == None):
+        await ctx.send("Please pass in a proper argument.")
+        return
+
+    if (allow == True):
+        if curses != True:
+            curses = True
+            await ctx.send("Curses are now allowed.")
+        else:
+            await ctx.send("Curses are already allowed.")
+    elif (allow == False):
+        if curses != False:
+            curses = False
+            await ctx.send("Curses are now disallowed.")
+        else:
+            await ctx.send("Curses are already disabled.")
+    else:
+        await ctx.send("Invalid argument")
+
 
 @bot.event
 async def on_message(message):
     msg = message.content.lower()
+    global curses
     if message.author.bot:
         return
+    elif curses == False:
+        pass
     else:
         for j in link: # look for links in the message
             if j in msg:
