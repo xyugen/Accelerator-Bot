@@ -75,7 +75,7 @@ curses = True
 
 @bot.command(pass_context=True)
 @commands.has_permissions(administrator=True)
-async def curses(ctx, allow=None):
+async def curses(ctx, allow:bool=None):
     global curses
     if (allow == None):
         await ctx.send("Please pass in a proper argument.")
