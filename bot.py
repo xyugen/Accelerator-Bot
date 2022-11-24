@@ -1,22 +1,23 @@
+from datetime import datetime
+from discord.flags import Intents
+import random
+from discord.ext.commands import bot, Bot
+from discord.ext import commands
+from discord import activity
+from discord import message
+from discord import user
+import discord
 import os
 from dotenv import load_dotenv
 load_dotenv()
 
-import discord
-from discord import user
-from discord import message
-from discord import activity
-from discord.ext import commands
-from discord.ext.commands import bot, Bot
-import random
-from discord.flags import Intents
-from datetime import datetime
 
 intents = discord.Intents.default()
 intents.members = True
 
 bot = commands.Bot(description="Yugen's creation. Current version: 1.0.", command_prefix='al;',
                    intents=intents, allowed_mentions=discord.AllowedMentions(everyone=True))
+
 
 @bot.event
 async def on_ready():
@@ -30,6 +31,7 @@ global username
 global user_id
 global member
 global userAvatar
+
 
 @bot.event
 async def on_member_join(member):
@@ -51,6 +53,7 @@ async def on_member_join(member):
     embed.set_author(name=f'{username} had joined!', icon_url=userAvatar)
     await channel.send(embed=embed)
 
+
 @bot.event
 async def on_member_remove(member):
     username = member.name.split('#')[0]
@@ -68,14 +71,16 @@ async def on_member_remove(member):
         title="Goodbye!", description=f"{member.mention} just left the server. Let us say our goodbyes, @everyone.")
     embed.set_author(name=f'{username} had left!', icon_url=userAvatar)
     await channel.send(embed=embed)
-    
-badwords = ['fuck', 'shit', 'bitch', 'puta', 'gago', 'deputa', 'tangina', 'ulol', 'ulul', 'tanga', 'inutil', 'gunggong', 'gunggung', 'hunghang', 'tang ina', 'putangina', 'pota', 'potangina', 'putang ina', 'kingina', 'king ina']
+
+badwords = ['fuck', 'shit', 'bitch', 'puta', 'gago', 'deputa', 'tangina', 'ulol', 'ulul', 'tanga', 'inutil',
+            'gunggong', 'gunggung', 'hunghang', 'tang ina', 'putangina', 'pota', 'potangina', 'putang ina', 'kingina', 'king ina']
 link = ['https://', 'http://']
 curses = True
 
+
 @bot.command(pass_context=True)
 @commands.has_permissions(administrator=True)
-async def curses(ctx, allow:bool=None):
+async def curses(ctx, allow: bool = None):
     global curses
     if (allow == None):
         await ctx.send("Please pass in a proper argument.")
@@ -103,32 +108,36 @@ async def on_message(message):
     global curses
     if message.author.bot:
         return
-    elif curses == False:
-        pass
     else:
-        for j in link: # look for links in the message
-            if j in msg:
-                return
+        if curses == True:
+            for j in link:  # look for links in the message
+                if j in msg:
+                    return
 
-        for i in badwords: # look for profanities in the message
-            if i in msg:
-                await message.delete()
-                await message.channel.send(f"{message.author.mention}, please avoid using profanity.\n**Message deleted:** ||{message.content}||")
-                bot.dispatch('profanity', message, i)
-                return # So that it doesn't try to delete the message again, which will cause an error.
+            for i in badwords:  # look for profanities in the message
+                if i in msg:
+                    await message.delete()
+                    await message.channel.send(f"{message.author.mention}, please avoid using profanity.\n**Message deleted:** ||{message.content}||")
+                    bot.dispatch('profanity', message, i)
+                    # So that it doesn't try to delete the message again, which will cause an error.
+                    return
 
     await bot.process_commands(message)
 
+
 @bot.event
-async def on_command_error(ctx, error): #sends an error message when the entered command is not found
+# sends an error message when the entered command is not found
+async def on_command_error(ctx, error):
     if isinstance(error, commands.CommandNotFound):
         await ctx.channel.send(f"**ERROR:** Sorry {ctx.author.mention}, but this command either doesn't exist or it's disabled. Contact <@560612243012845578> for more info.")
     else:
         raise error
-        
+
+
 @bot.command(pass_context=True)
 async def load(ctx, extension):
     bot.load_extension(f'cogs.{extension}')
+
 
 @bot.command(pass_context=True)
 async def unload(ctx, extension):
@@ -139,9 +148,11 @@ for filename in os.listdir('cogs'):
         bot.load_extension(f'cogs.{filename[:-3]}')
     else:
         print(f'Unable to load {filename[:-3]}')
-        
+
+
 async def del_msg(msg):
     await msg.message.delete()
+
 
 @bot.command(pass_context=True, name='add', help="Adds two numbers")
 async def add(ctx, left: int, right: int):
@@ -199,7 +210,7 @@ async def announce(ctx, title, *, arg):
 @bot.command(pass_context=True, name='tell', help='I will retell what you told me.')
 async def tell(ctx, *, arg):
     user_id = ctx.author.id
-    embed=discord.Embed(title=f"{arg}", color=0xFF5733)
+    embed = discord.Embed(title=f"{arg}", color=0xFF5733)
     await ctx.send(embed=embed)
     await del_msg(ctx)
 
