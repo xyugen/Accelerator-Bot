@@ -108,19 +108,20 @@ async def on_message(message):
     global curses
     if message.author.bot:
         return
+    elif curses == True:
+        pass
     else:
-        if curses == True:
-            for j in link:  # look for links in the message
-                if j in msg:
-                    return
+        for j in link:  # look for links in the message
+            if j in msg:
+                return
 
-            for i in badwords:  # look for profanities in the message
-                if i in msg:
-                    await message.delete()
-                    await message.channel.send(f"{message.author.mention}, please avoid using profanity.\n**Message deleted:** ||{message.content}||")
-                    bot.dispatch('profanity', message, i)
-                    # So that it doesn't try to delete the message again, which will cause an error.
-                    return
+        for i in badwords:  # look for profanities in the message
+            if i in msg:
+                await message.delete()
+                await message.channel.send(f"{message.author.mention}, please avoid using profanity.\n**Message deleted:** ||{message.content}||")
+                bot.dispatch('profanity', message, i)
+                # So that it doesn't try to delete the message again, which will cause an error.
+                return
 
     await bot.process_commands(message)
 
